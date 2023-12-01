@@ -22,11 +22,12 @@
     <Button
         android:id="@+id/add_meal_button"
         android:layout_width="400dp"
-        android:layout_height="150px"
+        android:layout_height="50dp"
         app:layout_constraintBottom_toTopOf="@id/nav_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:text="Add Meal" />
+        android:text = "@string/add_meal"
+        android:onClick="goToSecondActivity" />
 
     <fragment
         android:id="@+id/nav_host_fragment_activity_main"
