@@ -1,6 +1,8 @@
-package com.example.a327finalprojectcalorietracker.ui;
+package com.example.a327finalprojectcalorietracker;
 
 import com.google.gson.annotations.SerializedName;
+
+
 
 public class labelNutrients {
     @SerializedName("fat")
