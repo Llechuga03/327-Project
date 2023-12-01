@@ -25,7 +25,7 @@ import retrofit2.http.Query;
 
 
 public class Add_Meal extends AppCompatActivity {
-    String api_key ="fMoh8eI1l06bnM1emwJx5DWxDU9AwY3AMNHfXeSp";
+    String api_key;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
