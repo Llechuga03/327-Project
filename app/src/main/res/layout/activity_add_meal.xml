@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -22,11 +23,10 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:visibility="visible" />
 
-    <SearchView
-        android:id="@+id/searchView"
+    <android.widget.SearchView
+        android:id="@+id/searchViewButton"
         android:layout_width="347dp"
         android:layout_height="50dp"
-
         android:iconifiedByDefault="false"
         android:queryHint="Search"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,7 +34,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-    </SearchView>
+    </android.widget.SearchView>
+
+    <ListView
+        android:layout_width="409dp"
+        android:id="@+id/listView"
+        android:layout_height="679dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchViewButton" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

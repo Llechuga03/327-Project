@@ -42,11 +42,11 @@ dependencies {
     implementation("androidx.navigation:navigation-ui:2.5.3")
     //Fix Kotlin duplicate class error
     implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.8.0"))
-    implementation ("androidx.appcompat:appcompat:1.3.0")
-//    implementation("com.android.car.ui:car-ui-lib:2.5.1")
+//    implementation ("androidx.appcompat:appcompat:1.3.0")
     //Install Retrofit to make API calls
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation ("androidx.appcompat:appcompat:1.4.1")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
