@@ -27,6 +27,25 @@ import retrofit2.http.Query;
 public class Add_Meal extends AppCompatActivity {
     String api_key;
 
+    //these two should increase the progress bar on the home page as the user
+    //click on what food they're entering from the search bar
+    private double calculateConsumedCalories(labelNutrients nutritionalInfo){
+        //Calculate consumed calories based on the nutritional info received
+        double calories = nutritionalInfo.getCalories();
+
+        return calories;
+    }
+
+    private void updateProgressBar(double consumedCalories){
+        double maxCalories = 2000;
+
+        int progress=(int) ((consumedCalories/maxCalories)*100);
+
+        updateProgressBar(progress);
+    }
+
+    //Still need to figure out how this will change the progress bar
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,10 +61,11 @@ public class Add_Meal extends AppCompatActivity {
 
         // Make sure the SearchView is able to Read Queries
         SearchView searchView = findViewById(R.id.searchViewButton);
+        ListView listView = findViewById(R.id.listView);
+        //Just added this, not sure if this will intefere with the one that's already defined inside one of the other override fields
 
         // Set an OnQueryTextListener to the SearchView
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
-
         {
             @Override
             public boolean onQueryTextSubmit (String query){
@@ -177,6 +197,6 @@ public class Add_Meal extends AppCompatActivity {
         startActivity(intent);
     }
 
-
+    // Make an API call to retrieve nutritional information for the consumed food
 
 }
