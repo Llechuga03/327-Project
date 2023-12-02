@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
@@ -90,7 +91,10 @@ public class Add_Meal extends AppCompatActivity {
                                 List<String> descriptions = new ArrayList<>();
                                 for (int i = 0; i < 10 && i < foodItems.size(); i++) {
                                     foodItem foodItemData = foodItems.get(i);
+//                                    double calories = foodItemData.getLabelNutrients().getCalories();
                                     descriptions.add(foodItemData.getDescription());
+//                                    String description = foodItemData.getDescription() + " - " + calories + " Cal";
+//                                    descriptions.add(description); //Trying to add calories makes the app crash
                                 }
 
                                 // Create an ArrayAdapter and set it on the ListView
@@ -120,77 +124,29 @@ public class Add_Meal extends AppCompatActivity {
                 return true;
             }
         });
+        // Initialize the ListView onclicklistener to add the data the user chooses into the UserFoods class
+        ListView listView = findViewById(R.id.listView);
+
+        // Set the onItemClickListener
+        UserFoods userFoods = new UserFoods();
+
+        //FIXME appending information makes app crash @line 118 || parent.getItemAtPosition(position) is returning a String
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // Get the selected item text from ListView
+                foodItem selectedItem = (foodItem) parent.getItemAtPosition(position);
+
+                // Call addFood on the instance of UserFoods
+                userFoods.addFood(selectedItem);
+
+                // Log the updated UserFoods
+                Log.d("UserFoods", "Updated UserFoods: " + userFoods.toString());
+            }
+        });
     }
 
-//    private void performFoodSearch(String query) {
-//        Call<foodItem> call = FoodSearchService.getBrandedFoodItem(query, "your_api_key");
-//        call.enqueue(new Callback<APIResponse>() {
-//            @Override
-//            public void onResponse(Call<APIResponse> call, Response<APIResponse> response) {
-//                if (response.isSuccessful() && response.body() != null) {
-//                    List<foodItem> foodItems = response.body().getFoods();
-//                    if (foodItems != null && !foodItems.isEmpty()) {
-//                        // For simplicity, let's just take the first food item
-//                        foodItem firstFoodItem = foodItems.get(0);
-//                        labelNutrients nutrients = firstFoodItem.getLabelNutrients();
-//                        // Now you can use the 'nutrients' object to access the label nutrients data
-//                        // Accessing nutrient values
-//                        double fat = nutrients.getFat();
-//                        double saturatedFat = nutrients.getSaturatedFat();
-//                        double transFat = nutrients.getTransFat();
-//                        double cholesterol = nutrients.getCholesterol();
-//                        double sodium = nutrients.getSodium();
-//                        double carbohydrates = nutrients.getCarbohydrates();
-//                        double fiber = nutrients.getFiber();
-//                        double sugars = nutrients.getSugars();
-//                        double protein = nutrients.getProtein();
-//                        double calcium = nutrients.getCalcium();
-//                        double iron = nutrients.getIron();
-//                        double potassium = nutrients.getPotassium();
-//                        double calories = nutrients.getCalories();
-//
-//                        //Print them in the console
-//                        printNutrientValues(fat, saturatedFat, transFat, cholesterol, sodium, carbohydrates,
-//                                fiber, sugars, protein, calcium, iron, potassium, calories);
-//                    } else {
-//                        // Handle the case when no food items are found
-//                        Toast.makeText(Add_Meal.this, "No results found", Toast.LENGTH_SHORT).show();
-//                    }
-//                } else {
-//                    // Handle the case when the API call is not successful
-//                    Toast.makeText(Add_Meal.this, "Error in API call", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<APIResponse> call, Throwable t) {
-//                // Handle the case when the API call fails
-//                Toast.makeText(Add_Meal.this, "Failed to retrieve data", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//    }
 
-
-    private void printNutrientValues(double fat, double saturatedFat, double transFat, double cholesterol,
-                                     double sodium, double carbohydrates, double fiber, double sugars,
-                                     double protein, double calcium, double iron, double potassium,
-                                     double calories) {
-        // Example: Print nutrient values to the console
-        System.out.println("Nutrient Values:");
-        System.out.println("Fat: " + fat + " grams");
-        System.out.println("Saturated Fat: " + saturatedFat + " grams");
-        System.out.println("Trans Fat: " + transFat + " grams");
-        System.out.println("Cholesterol: " + cholesterol + " milligrams");
-        System.out.println("Sodium: " + sodium + " milligrams");
-        System.out.println("Carbohydrates: " + carbohydrates + " grams");
-        System.out.println("Fiber: " + fiber + " grams");
-        System.out.println("Sugars: " + sugars + " grams");
-        System.out.println("Protein: " + protein + " grams");
-        System.out.println("Calcium: " + calcium + " milligrams");
-        System.out.println("Iron: " + iron + " milligrams");
-        System.out.println("Potassium: " + potassium + " milligrams");
-        System.out.println("Calories: " + calories + " calories");
-    }
 
     public void goToMainMenu(View view) {
         Intent intent = new Intent(this, MainActivity.class);
