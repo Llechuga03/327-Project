@@ -2,7 +2,15 @@ package com.example.a327finalprojectcalorietracker;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class foodItem {
+
+    private float calories;
+    private float carbs;
+    private float protein;
+    private float fat;
     @SerializedName("fdcId")
     private int fdcId;
 
@@ -33,8 +41,8 @@ public class foodItem {
     @SerializedName("servingSizeUnit")
     private String servingSizeUnit;
 
-    @SerializedName("labelNutrients")
-    private labelNutrients labelNutrients;
+    @SerializedName("foodNutrients")
+    private List<FoodNutrient> foodNutrients;
 
     // getters and setters for each field
 
@@ -118,11 +126,63 @@ public class foodItem {
         this.servingSizeUnit = servingSizeUnit;
     }
 
-    public com.example.a327finalprojectcalorietracker.labelNutrients getLabelNutrients() {
-        return labelNutrients;
+    public List<FoodNutrient> getFoodNutrients() {
+        return foodNutrients;
     }
 
-    public void setLabelNutrients(com.example.a327finalprojectcalorietracker.labelNutrients labelNutrients) {
-        this.labelNutrients = labelNutrients;
+    public void setFoodNutrients(List<FoodNutrient> foodNutrients) {
+        this.foodNutrients = foodNutrients;
     }
+
+
+    public String displayContent() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("foodItem {");
+        sb.append("\nfdcId=").append(fdcId);
+        sb.append(", \navailableDate='").append(availableDate).append('\'');
+        sb.append(", \nbrandOwner='").append(brandOwner).append('\'');
+        sb.append(", \ndataSource='").append(dataSource).append('\'');
+        sb.append(", \ndataType='").append(dataType).append('\'');
+        sb.append(", \ndescription='").append(description).append('\'');
+        sb.append(", \nfoodClass='").append(foodClass).append('\'');
+        sb.append(", \ningredients='").append(ingredients).append('\'');
+        sb.append(", \nservingSize=").append(servingSize);
+        sb.append(", \nservingSizeUnit='").append(servingSizeUnit).append('\'');
+        if (foodNutrients != null) {
+            sb.append(", \nfoodNutrients=[");
+            for (FoodNutrient nutrient : foodNutrients) {
+                sb.append("\n").append(nutrient.displayNutrients()).append(",");
+            }
+            // remove the last comma
+            sb.setLength(sb.length() - 1);
+            sb.append("\n]");
+        } else {
+            sb.append(", \nfoodNutrients=null");
+        }
+        sb.append("\n}");
+        return sb.toString();
+    }
+
+    public void parseFoodNutrients() {
+        for (FoodNutrient nutrient : foodNutrients) {
+            String nutrientName = nutrient.getNutrientName();
+            if ("Energy".equals(nutrientName)) { //KCAL
+                this.calories = nutrient.getValue();
+            } else if ("Carbohydrate, by difference".equals(nutrientName)) {//Grams
+                this.carbs = nutrient.getValue();
+            } else if ("Protein".equals(nutrientName)) {//Grams
+                this.protein = nutrient.getValue();
+            } else if ("Total lipid (fat)".equals(nutrientName)) {//Grams
+                this.fat = nutrient.getValue();
+            }
+        }
+    }
+
+    public String displayContentSimple() {
+        return "Calories: " + this.calories + "\n" +
+                "Protein: " + this.protein + "\n" +
+                "Carbs: " + this.carbs + "\n" +
+                "Fat: " + this.fat;
+    }
+
 }
