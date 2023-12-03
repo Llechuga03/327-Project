@@ -146,7 +146,7 @@ public class Add_Meal extends AppCompatActivity {
 
                     //create an Intent to send progress values back to MainActivity
                     Intent resultIntent = new Intent();
-                    resultIntent.putExtra("consumedCalories",consumedCalories);
+                    resultIntent.putExtra("consumedCalories", consumedCalories);
                     setResult(RESULT_OK, resultIntent);
                     finish(); //Finish Add_Meal activity and return to MainActivity
                 } else {
@@ -157,11 +157,9 @@ public class Add_Meal extends AppCompatActivity {
     }
 
 
-        public void goToMainMenu (View view){
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-        }
-
-        // Make an API call to retrieve nutritional information for the consumed food
+    public void goToMainMenu(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
 }
 
