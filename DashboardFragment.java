@@ -81,11 +81,11 @@ public class DashboardFragment extends Fragment {
                 // need to update with proper logic
 
 
-                int foodCalVal = 0;
+                int foodCalVal = 700;
 
                 foodCal.setText(String.valueOf(foodCalVal));
 
-                int budgetCalVal = 0;
+                int budgetCalVal = 2000;
                 budgetCal.setText(String.valueOf(budgetCalVal));
 
                 int remainingCalVal = getRemainingCal(foodCalVal);
