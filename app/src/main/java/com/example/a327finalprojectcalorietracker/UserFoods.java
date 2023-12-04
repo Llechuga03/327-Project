@@ -7,54 +7,29 @@ import java.util.List;
 
 public class UserFoods {
     private List<foodItem> foodItems;
-    private labelNutrients totalNutrients;
+    private List<FoodNutrient> totalNutrients;
 
     public UserFoods() {
         this.foodItems = new ArrayList<>();
-        this.totalNutrients = new labelNutrients();
+        this.totalNutrients = new ArrayList<>();
     }
 
     public void addFood(foodItem food) {
         this.foodItems.add(food);
-        this.totalNutrients.setFat(this.totalNutrients.getFat() + food.getLabelNutrients().getFat());
-        this.totalNutrients.setSaturatedFat(this.totalNutrients.getSaturatedFat() + food.getLabelNutrients().getSaturatedFat());
-        this.totalNutrients.setTransFat(this.totalNutrients.getTransFat() + food.getLabelNutrients().getTransFat());
-        this.totalNutrients.setCholesterol(this.totalNutrients.getCholesterol() + food.getLabelNutrients().getCholesterol());
-        this.totalNutrients.setSodium(this.totalNutrients.getSodium() + food.getLabelNutrients().getSodium());
-        this.totalNutrients.setCarbohydrates(this.totalNutrients.getCarbohydrates() + food.getLabelNutrients().getCarbohydrates());
-        this.totalNutrients.setFiber(this.totalNutrients.getFiber() + food.getLabelNutrients().getFiber());
-        this.totalNutrients.setSugars(this.totalNutrients.getSugars() + food.getLabelNutrients().getSugars());
-        this.totalNutrients.setProtein(this.totalNutrients.getProtein() + food.getLabelNutrients().getProtein());
-        this.totalNutrients.setCalcium(this.totalNutrients.getCalcium() + food.getLabelNutrients().getCalcium());
-        this.totalNutrients.setIron(this.totalNutrients.getIron() + food.getLabelNutrients().getIron());
-        this.totalNutrients.setPotassium(this.totalNutrients.getPotassium() + food.getLabelNutrients().getPotassium());
-        this.totalNutrients.setCalories(this.totalNutrients.getCalories() + food.getLabelNutrients().getCalories());
+        this.totalNutrients.addAll(food.getFoodNutrients());
     }
 
     public void removeFood(foodItem food) {
         if (this.foodItems.remove(food)) {
-            this.totalNutrients.setFat(this.totalNutrients.getFat() - food.getLabelNutrients().getFat());
-            this.totalNutrients.setSaturatedFat(this.totalNutrients.getSaturatedFat() - food.getLabelNutrients().getSaturatedFat());
-            this.totalNutrients.setTransFat(this.totalNutrients.getTransFat() - food.getLabelNutrients().getTransFat());
-            this.totalNutrients.setCholesterol(this.totalNutrients.getCholesterol() - food.getLabelNutrients().getCholesterol());
-            this.totalNutrients.setSodium(this.totalNutrients.getSodium() - food.getLabelNutrients().getSodium());
-            this.totalNutrients.setCarbohydrates(this.totalNutrients.getCarbohydrates() - food.getLabelNutrients().getCarbohydrates());
-            this.totalNutrients.setFiber(this.totalNutrients.getFiber() - food.getLabelNutrients().getFiber());
-            this.totalNutrients.setSugars(this.totalNutrients.getSugars() - food.getLabelNutrients().getSugars());
-            this.totalNutrients.setProtein(this.totalNutrients.getProtein() - food.getLabelNutrients().getProtein());
-            this.totalNutrients.setCalcium(this.totalNutrients.getCalcium() - food.getLabelNutrients().getCalcium());
-            this.totalNutrients.setIron(this.totalNutrients.getIron() - food.getLabelNutrients().getIron());
-            this.totalNutrients.setPotassium(this.totalNutrients.getPotassium() - food.getLabelNutrients().getPotassium());
-            this.totalNutrients.setCalories(this.totalNutrients.getCalories() - food.getLabelNutrients().getCalories());
+            this.totalNutrients.removeAll(food.getFoodNutrients());
         }
     }
-
 
     public List<foodItem> getFoodItems() {
         return foodItems;
     }
 
-    public labelNutrients getTotalNutrients() {
+    public List<FoodNutrient> getTotalNutrients() {
         return totalNutrients;
     }
 }
