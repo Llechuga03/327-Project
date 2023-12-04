@@ -46,8 +46,9 @@ public class DashboardFragment extends Fragment {
                 new ViewModelProvider(this).get(DashboardViewModel.class);
 
 
-        binding = FragmentDashboardBinding.inflate(inflater, container, false);
+       binding = FragmentDashboardBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
 
         sharedViewModel = new ViewModelProvider(requireActivity()).get(sharedView.class);
 
@@ -66,9 +67,8 @@ public class DashboardFragment extends Fragment {
         updateProgress(initialProgress, 1);
 
 
-
-
         startUpdatingProgress();
+
 
 
         return root;
@@ -76,7 +76,7 @@ public class DashboardFragment extends Fragment {
 
 
     double foodCalVal = 0;
-    double budgetCalVal = 2000;
+    double budgetCalVal = 0;
 
 
     private void startUpdatingProgress() {
@@ -97,9 +97,9 @@ public class DashboardFragment extends Fragment {
                 
                 foodCalVal  = UserFoods.getInstance().sumTotalCalories();
                 
-
-                generateFoodTextViews();
-                
+                if (binding != null) {
+                    generateFoodTextViews();
+                }
                 budgetCalVal = sharedViewModel.getBudgetCalVal();
 
                 // Update TextViews
