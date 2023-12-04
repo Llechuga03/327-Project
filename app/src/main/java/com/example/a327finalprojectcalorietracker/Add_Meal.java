@@ -158,8 +158,8 @@ public class Add_Meal extends AppCompatActivity {
                             Log.d("UserFoods", "Updated total Carbs: " + userFoods.sumTotalCarbs());
                             Log.d("UserFoods", "Updated total Fats: " + userFoods.sumTotalFats());
 
-//                            //Calculate consumed calories here based on the selected item's nutritonal info
-//                            double consumedCalories = calculateConsumedCalories(desiredFood.getFoodNutrients());
+//                         Calculate consumed calories here based on the selected item's nutritional info
+                           double consumedCalories = desiredFood.getCalories();
 
                             //create an Intent to send progress values back to MainActivity
                             Intent resultIntent = new Intent();

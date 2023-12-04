@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
+                R.id.navigation_home, R.id.navigation_dashboard)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
@@ -60,27 +60,10 @@ public class MainActivity extends AppCompatActivity {
 
                 //Update progress bars based on the recieved consumedCalories
                 //For example:
-                updateProgressBarForCalories(consumedCalories);
+                //updateProgressBarForCalories(consumedCalories);
             }
         }
     }
-
-    //this is the code to update each progress bar
-    private void updateProgressBarForCalories(double consumedCalories) {
-        double maxCalories = 2000;
-        //Calculate progress based on consumedCalories and update the progress bars accordingly
-        int progress = (int) ((consumedCalories/maxCalories)*100);
-
-        //update the progress bars for protein, carbs, and fat accordingly
-        ProgressBar progressBarProtein = findViewById(R.id.progress_bar_protein);
-        ProgressBar progressBarCarbs = findViewById(R.id.progress_bar_carbs);
-        ProgressBar progressBarFat = findViewById(R.id.progress_bar_fat);
-
-        progressBarProtein.setProgress(progress);
-        progressBarCarbs.setProgress(progress);
-        progressBarFat.setProgress(progress);
-    }
-    //we might need to update this based on how we want to increase each progress bar
 
 
     public void goToSecondActivity(View view) {
