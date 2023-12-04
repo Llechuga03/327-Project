@@ -20,7 +20,8 @@ import com.example.a327finalprojectcalorietracker.R;
 import com.example.a327finalprojectcalorietracker.UserFoods;
 import com.example.a327finalprojectcalorietracker.databinding.FragmentDashboardBinding;
 import com.example.a327finalprojectcalorietracker.foodItem;
-
+import com.example.a327finalprojectcalorietracker.sharedView;
+import com.example.a327finalprojectcalorietracker.ui.home.HomeFragment;
 
 import android.os.Handler;
 import android.os.Looper;
@@ -30,7 +31,7 @@ import android.os.Looper;
 
 public class DashboardFragment extends Fragment {
 
-
+    private sharedView sharedViewModel;
     private FragmentDashboardBinding binding;
     private ProgressBar progressBar;
     private Handler handler;
@@ -48,6 +49,7 @@ public class DashboardFragment extends Fragment {
         binding = FragmentDashboardBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        sharedViewModel = new ViewModelProvider(requireActivity()).get(sharedView.class);
 
         foodCal = root.findViewById(R.id.foodCal);
         budgetCal = root.findViewById(R.id.budgetCal);
@@ -98,6 +100,7 @@ public class DashboardFragment extends Fragment {
 
                 generateFoodTextViews();
                 
+                budgetCalVal = sharedViewModel.getBudgetCalVal();
 
                 // Update TextViews
                 foodCal.setText(String.valueOf(foodCalVal));
