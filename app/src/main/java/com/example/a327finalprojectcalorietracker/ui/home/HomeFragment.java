@@ -114,8 +114,9 @@ public class HomeFragment extends Fragment {
 
 
                 // Update progress based on the new value
-                updateProgressBars();
-
+                if (binding != null) {
+                    updateProgressBars();
+                }
 
 
 
@@ -156,9 +157,27 @@ public class HomeFragment extends Fragment {
         TextView textCarbCount = binding.textCarbCount;
         TextView textFatsCount = binding.textFatsCount;
 
-        textProteinCount.setText(String.format("%.2f g of protein", totalConsumedProtein));
-        textCarbCount.setText(String.format("%.2f g of carbs", totalConsumedCarbs));
-        textFatsCount.setText(String.format("%.2f g of fats", totalConsumedFats));
+        textProteinCount.setText(String.format("%.2f g Protein", totalConsumedProtein));
+        textCarbCount.setText(String.format("%.2f g Carbs", totalConsumedCarbs));
+        textFatsCount.setText(String.format("%.2f g Fats", totalConsumedFats));
+
+        if (binding != null) {
+            textViewProgressProtein = binding.textViewProgressProtein;
+
+            if (textViewProgressProtein != null) {
+                textViewProgressProtein.setText(progressProtein + "%");
+            }
+
+            textViewProgressCarbs = binding.textViewProgressCarbs;
+            if (textViewProgressCarbs != null) {
+                textViewProgressCarbs.setText(progressCarbs + "%");
+            }
+
+            textViewProgressFats = binding.textViewProgressFat;
+            if (textViewProgressFats != null) {
+                textViewProgressFats.setText(progressFats + "%");
+            }
+        }
     }
 
     private void addFoodAndUpdateProgress(foodItem desiredFood) {
