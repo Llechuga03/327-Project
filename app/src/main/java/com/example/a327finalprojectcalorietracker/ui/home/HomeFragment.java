@@ -1,6 +1,8 @@
 package com.example.a327finalprojectcalorietracker.ui.home;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -27,6 +29,7 @@ import com.example.a327finalprojectcalorietracker.sharedView;
 public class HomeFragment extends Fragment {
 
     private sharedView sharedViewModel;
+    private Handler handler;
     private ProgressBar progressBarProtein;
     private ProgressBar progressBarCarbs;
     private ProgressBar progressBarFats;
@@ -40,9 +43,12 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        progressBarCarbs = binding.progressBarCarbs;
-        progressBarFats = binding.progressBarFat;
-        progressBarProtein = binding.progressBarProtein;
+
+        progressBarCarbs = root.findViewById(R.id.progress_bar_protein);
+        progressBarFats = root.findViewById(R.id.progress_bar_fat);
+        progressBarProtein = root.findViewById(R.id.progress_bar_carbs);
+        int initialProgress=0;
+        updateProgress(initialProgress,1);
 
         editTextNumber = binding.editTextNumber;
 
@@ -79,40 +85,57 @@ public class HomeFragment extends Fragment {
     }
 
     private void updateProgressBars() {
-        // Get total consumed nutrients
-        float totalConsumedCarbs = UserFoods.getInstance().sumTotalCarbs();
-        float totalConsumedProtein = UserFoods.getInstance().sumTotalProtein();
-        float totalConsumedFats = UserFoods.getInstance().sumTotalFats();
 
-        // Calculate percentages
-        float maxCarbs = 300;
-        float maxProtein = 100;
-        float maxFats = 70;
+        long delayMillis = 50;
 
-        int progressCarbs = (int) ((totalConsumedCarbs / maxCarbs) * 100);
-        int progressProtein = (int) ((totalConsumedProtein / maxProtein) * 100);
-        int progressFats = (int) ((totalConsumedFats / maxFats) * 100);
+        Runnable updateProgressRunnable2 = new Runnable(){
+            @Override
+            public void run(){
+                float totalConsumedCarbs = UserFoods.getInstance().sumTotalCarbs();
+                float totalConsumedProtein = UserFoods.getInstance().sumTotalProtein();
+                float totalConsumedFats = UserFoods.getInstance().sumTotalFats();
 
-        // Update progress bars
-        progressBarCarbs.setProgress(progressCarbs);
-        progressBarProtein.setProgress(progressProtein);
-        progressBarFats.setProgress(progressFats);
+                // Calculate percentages
+                float maxCarbs = 300;
+                float maxProtein = 100;
+                float maxFats = 70;
 
-        // Update percentage TextViews if available in your XML
-        TextView textViewProgressProtein = binding.textViewProgressProtein;
-        textViewProgressProtein.setText(progressProtein + "%");
+                int progressCarbs = (int) ((totalConsumedCarbs / maxCarbs) * 100);
+                int progressProtein = (int) ((totalConsumedProtein / maxProtein) * 100);
+                int progressFats = (int) ((totalConsumedFats / maxFats) * 100);
 
-        TextView textViewProgressCarbs = binding.textViewProgressCarbs;
-        textViewProgressCarbs.setText(progressCarbs + "%");
+                // Update progress bars
+                updateProgress((int)totalConsumedCarbs, 300);
+                updateProgress((int)totalConsumedFats,70);
+                updateProgress((int)totalConsumedProtein,100);
+                //progressBarCarbs.setProgress(progressCarbs);
+                //progressBarProtein.setProgress(progressProtein);
+                //progressBarFats.setProgress(progressFats);
 
-        TextView textViewProgressFats = binding.textViewProgressFat;
-        textViewProgressFats.setText(progressFats + "%");
+                // Update percentage TextViews if available in your XML
+                TextView textViewProgressProtein = binding.textViewProgressProtein;
+                textViewProgressProtein.setText(progressProtein + "%");
+
+                TextView textViewProgressCarbs = binding.textViewProgressCarbs;
+                textViewProgressCarbs.setText(progressCarbs + "%");
+
+                TextView textViewProgressFats = binding.textViewProgressFat;
+                textViewProgressFats.setText(progressFats + "%");
+
+                handler.postDelayed(this, delayMillis);
+            }
+        };
+
+        handler.postDelayed(updateProgressRunnable2, delayMillis);
     }
 
-    private void addFoodAndUpdateProgress(foodItem desiredFood) {
-        UserFoods userFoods = UserFoods.getInstance();
-        userFoods.addFood(desiredFood);
-        updateProgressBars();
+    private void updateProgress(int anotherValue, int maxInput) {
+      //Calculate progress based on another value, needs adjustment
+        int progress = (int) ((float) anotherValue / maxInput *100);
+
+        progressBarProtein.setProgress(progress);
+        progressBarFats.setProgress(progress);
+        progressBarCarbs.setProgress(progress);
     }
 
     @Override
