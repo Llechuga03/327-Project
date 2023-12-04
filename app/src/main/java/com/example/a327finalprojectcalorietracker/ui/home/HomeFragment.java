@@ -44,11 +44,13 @@ public class HomeFragment extends Fragment {
         View root = binding.getRoot();
 
 
-        progressBarCarbs = root.findViewById(R.id.progress_bar_protein);
-        progressBarFats = root.findViewById(R.id.progress_bar_fat);
-        progressBarProtein = root.findViewById(R.id.progress_bar_carbs);
+       //ProgressBar progressBarCarbs = binding.progressBarCarbs;
+       //ProgressBar progressBarProtein = binding.progressBarProtein;
+       //ProgressBar progressBarFats = binding.progressBarFat;
         int initialProgress=0;
         updateProgress(initialProgress,1);
+
+        handler = new Handler(Looper.getMainLooper());
 
         editTextNumber = binding.editTextNumber;
 
@@ -88,45 +90,47 @@ public class HomeFragment extends Fragment {
 
         long delayMillis = 50;
 
-        Runnable updateProgressRunnable2 = new Runnable(){
-            @Override
-            public void run(){
-                float totalConsumedCarbs = UserFoods.getInstance().sumTotalCarbs();
-                float totalConsumedProtein = UserFoods.getInstance().sumTotalProtein();
-                float totalConsumedFats = UserFoods.getInstance().sumTotalFats();
+        if (handler != null) {
+            handler.postDelayed(new Runnable() {
 
-                // Calculate percentages
-                float maxCarbs = 300;
-                float maxProtein = 100;
-                float maxFats = 70;
+                @Override
+                public void run() {
+                    float totalConsumedCarbs = UserFoods.getInstance().sumTotalCarbs();
+                    float totalConsumedProtein = UserFoods.getInstance().sumTotalProtein();
+                    float totalConsumedFats = UserFoods.getInstance().sumTotalFats();
 
-                int progressCarbs = (int) ((totalConsumedCarbs / maxCarbs) * 100);
-                int progressProtein = (int) ((totalConsumedProtein / maxProtein) * 100);
-                int progressFats = (int) ((totalConsumedFats / maxFats) * 100);
+                    // Calculate percentages
+                    float maxCarbs = 300;
+                    float maxProtein = 100;
+                    float maxFats = 70;
 
-                // Update progress bars
-                updateProgress((int)totalConsumedCarbs, 300);
-                updateProgress((int)totalConsumedFats,70);
-                updateProgress((int)totalConsumedProtein,100);
-                //progressBarCarbs.setProgress(progressCarbs);
-                //progressBarProtein.setProgress(progressProtein);
-                //progressBarFats.setProgress(progressFats);
+                    int progressCarbs = (int) ((totalConsumedCarbs / maxCarbs) * 100);
+                    int progressProtein = (int) ((totalConsumedProtein / maxProtein) * 100);
+                    int progressFats = (int) ((totalConsumedFats / maxFats) * 100);
 
-                // Update percentage TextViews if available in your XML
-                TextView textViewProgressProtein = binding.textViewProgressProtein;
-                textViewProgressProtein.setText(progressProtein + "%");
+                    // Update progress bars
+                    updateProgress((int) totalConsumedCarbs, 300);
+                    updateProgress((int) totalConsumedFats, 70);
+                    updateProgress((int) totalConsumedProtein, 100);
+                    //progressBarCarbs.setProgress(progressCarbs);
+                    //progressBarProtein.setProgress(progressProtein);
+                    //progressBarFats.setProgress(progressFats);
 
-                TextView textViewProgressCarbs = binding.textViewProgressCarbs;
-                textViewProgressCarbs.setText(progressCarbs + "%");
+                    // Update percentage TextViews if available in your XML
+                    TextView textViewProgressProtein = binding.textViewProgressProtein;
+                    textViewProgressProtein.setText(progressProtein + "%");
 
-                TextView textViewProgressFats = binding.textViewProgressFat;
-                textViewProgressFats.setText(progressFats + "%");
+                    TextView textViewProgressCarbs = binding.textViewProgressCarbs;
+                    textViewProgressCarbs.setText(progressCarbs + "%");
 
-                handler.postDelayed(this, delayMillis);
-            }
-        };
-
-        handler.postDelayed(updateProgressRunnable2, delayMillis);
+                    TextView textViewProgressFats = binding.textViewProgressFat;
+                    textViewProgressFats.setText(progressFats + "%");
+                    if (handler != null) {
+                        handler.postDelayed(this, delayMillis);
+                    }
+                }
+            }, delayMillis);
+        }
     }
 
     private void updateProgress(int anotherValue, int maxInput) {
@@ -140,6 +144,7 @@ public class HomeFragment extends Fragment {
 
     @Override
     public void onDestroyView() {
+        handler.removeCallbacksAndMessages(null);
         super.onDestroyView();
         binding = null;
     }
