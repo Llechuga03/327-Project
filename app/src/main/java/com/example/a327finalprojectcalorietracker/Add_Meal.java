@@ -112,7 +112,7 @@ public class Add_Meal extends AppCompatActivity {
         });
 
         // Set the onItemClickListener
-        UserFoods userFoods = new UserFoods();
+        UserFoods userFoods = UserFoods.getInstance();
 
         ListView listView = findViewById(R.id.listView);
 
@@ -144,15 +144,19 @@ public class Add_Meal extends AppCompatActivity {
 
                             // Log the value of desired food
                             Log.d("Desired Food", "Desired food item: " + desiredFood.getDescription());
-                            Log.d("Desired Food Details", desiredFood.displayContentSimple());
+                            Log.d("Desired Food", desiredFood.displayContentSimple());
 
                             userFoods.addFood(desiredFood);
 
                             // Log when it appends it to userFoods class
-                            Log.d("UserFoods", "Appended to UserFoods: " + desiredFood.toString());
+                            Log.d("UserFoods", "New Food: " + desiredFood.getDescription());
+                            Log.d("UserFoods", "New Food Macros: \n" + desiredFood.displayContentSimple());
 
                             // Log the updated UserFoods
-                            Log.d("UserFoods", "Updated UserFoods: " + userFoods.toString());
+                            Log.d("UserFoods", "Updated total Cals: " + userFoods.sumTotalCalories());
+                            Log.d("UserFoods", "Updated total Protein: " + userFoods.sumTotalProtein());
+                            Log.d("UserFoods", "Updated total Carbs: " + userFoods.sumTotalCarbs());
+                            Log.d("UserFoods", "Updated total Fats: " + userFoods.sumTotalFats());
 
 //                            //Calculate consumed calories here based on the selected item's nutritonal info
 //                            double consumedCalories = calculateConsumedCalories(desiredFood.getFoodNutrients());

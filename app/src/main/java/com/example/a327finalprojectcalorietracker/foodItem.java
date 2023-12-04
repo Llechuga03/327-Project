@@ -88,14 +88,14 @@ public class foodItem {
 
     public String getDescription() {
         return description;
-    }
+    } //GETS NAME
 
     public void setDescription(String description) {
         this.description = description;
     }
 
     public String getFoodClass() {
-        return foodClass;
+        return foodClass     ;
     }
 
     public void setFoodClass(String foodClass) {
@@ -183,6 +183,26 @@ public class foodItem {
                 "Protein: " + this.protein + "\n" +
                 "Carbs: " + this.carbs + "\n" +
                 "Fat: " + this.fat;
+    }
+
+    // Getter method for calories
+    public float getCalories() {
+        return this.calories;
+    }
+
+    // Getter method for carbs
+    public float getCarbs() {
+        return this.carbs;
+    }
+
+    // Getter method for protein
+    public float getProtein() {
+        return this.protein;
+    }
+
+    // Getter method for fat
+    public float getFat() {
+        return this.fat;
     }
 
 }
