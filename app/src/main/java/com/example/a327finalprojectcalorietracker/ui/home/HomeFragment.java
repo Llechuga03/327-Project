@@ -31,7 +31,8 @@ public class HomeFragment extends Fragment {
     private ProgressBar progressBarCarbs;
     private ProgressBar progressBarFats;
     private FragmentHomeBinding binding;
-
+    private EditText editTextNumber;
+    
     private float inNum = 0;
     
     @Override
