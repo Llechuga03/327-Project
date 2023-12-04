@@ -110,7 +110,7 @@ public class Add_Meal extends AppCompatActivity {
             }
         });
 
-        // Set the onItemClickListener
+        // Set the onItemClickListener (using singleton getInstance)
         UserFoods userFoods = UserFoods.getInstance();
 
         ListView listView = findViewById(R.id.listView);
