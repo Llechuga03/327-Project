@@ -21,6 +21,8 @@ import com.example.a327finalprojectcalorietracker.R;
 import com.example.a327finalprojectcalorietracker.UserFoods;
 import com.example.a327finalprojectcalorietracker.databinding.FragmentHomeBinding;
 import com.example.a327finalprojectcalorietracker.foodItem;
+import com.example.a327finalprojectcalorietracker.sharedView;
+
 
 public class HomeFragment extends Fragment {
 
