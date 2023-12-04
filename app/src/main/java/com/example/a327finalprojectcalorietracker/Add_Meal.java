@@ -140,6 +140,7 @@ public class Add_Meal extends AppCompatActivity {
                             // Add the selected item to UserFoods
                             foodItem desiredFood = selectedItem.get(0);
                             desiredFood.parseFoodNutrients();
+                            desiredFood.populateServingSize();
 
                             // Log the value of desired food
                             Log.d("Desired Food", "Desired food item: " + desiredFood.getDescription());

@@ -12,6 +12,8 @@ public class UserFoods {
     private List<foodItem> foodItems;
     private List<FoodNutrient> totalNutrients;
 
+
+
     //made private for use with singleton constructor
     private UserFoods() {
         //added first line for singleton
@@ -51,6 +53,15 @@ public class UserFoods {
         float totalCarbs = 0;
         for (foodItem food : foodItems) {
             totalCarbs += food.getCarbs();
+        }
+        return totalCarbs;
+    }
+
+    //Summing up total weight
+    public float sumTotalWeight() {
+        float totalCarbs = 0;
+        for (foodItem food : foodItems) {
+            totalCarbs += food.getWeight();
         }
         return totalCarbs;
     }
