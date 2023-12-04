@@ -60,27 +60,47 @@ public class MainActivity extends AppCompatActivity {
 
                 //Update progress bars based on the recieved consumedCalories
                 //For example:
-                updateProgressBarForCalories(consumedCalories);
+                //updateProgressBarForCalories(consumedCalories);
             }
         }
     }
 
     //this is the code to update each progress bar
-    private void updateProgressBarForCalories(double consumedCalories) {
-        double maxCalories = 2000;
-        //Calculate progress based on consumedCalories and update the progress bars accordingly
-        int progress = (int) ((consumedCalories/maxCalories)*100);
+    private void updateProgressBars(){
+        //float totalConsumedCalories = UserFoods.getInstance().sumTotalCalories();
+        float totalConsumedCarbs = UserFoods.getInstance().sumTotalCarbs();
+        float totalConsumedProtein = UserFoods.getInstance().sumTotalProtein();
+        float totalConsumedFats = UserFoods.getInstance().sumTotalFats();
 
-        //update the progress bars for protein, carbs, and fat accordingly
+        //ProgressBar progressBarCalories = findViewById(R.id.progress_bar_calories);
         ProgressBar progressBarProtein = findViewById(R.id.progress_bar_protein);
         ProgressBar progressBarCarbs = findViewById(R.id.progress_bar_carbs);
-        ProgressBar progressBarFat = findViewById(R.id.progress_bar_fat);
+        ProgressBar progressBarFats = findViewById(R.id.progress_bar_fat);
 
-        progressBarProtein.setProgress(progress);
-        progressBarCarbs.setProgress(progress);
-        progressBarFat.setProgress(progress);
+        // Calculate percentage for each nutrient
+        //float maxCalories = 2000; // Assuming 2000 is the max daily calorie intake
+        float maxCarbs = 300; // Assuming 300 grams as the max daily carb intake
+        float maxProtein = 100; // Assuming 100 grams as the max daily protein intake
+        float maxFats = 70; // Assuming 70 grams as the max daily fat intake
+
+        //int progressCalories = (int) ((totalConsumedCalories / maxCalories) * 100);
+        int progressCarbs = (int) ((totalConsumedCarbs / maxCarbs) * 100);
+        int progressProtein = (int) ((totalConsumedProtein / maxProtein) * 100);
+        int progressFats = (int) ((totalConsumedFats / maxFats) * 100);
+
+        // Update progress bars with calculated percentages
+        //progressBarCalories.setProgress(progressCalories);
+        progressBarCarbs.setProgress(progressCarbs);
+        progressBarProtein.setProgress(progressProtein);
+        progressBarFats.setProgress(progressFats);
     }
     //we might need to update this based on how we want to increase each progress bar
+
+    private void addFoodAndUpdateProgress(foodItem desiredFood){
+        UserFoods userFoods = UserFoods.getInstance();
+        userFoods.addFood(desiredFood);
+        updateProgressBars();
+    }
 
 
     public void goToSecondActivity(View view) {

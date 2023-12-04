@@ -4,13 +4,16 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.a327finalprojectcalorietracker.R;
 import com.example.a327finalprojectcalorietracker.databinding.FragmentDashboardBinding;
+
 
 public class DashboardFragment extends Fragment {
 
@@ -26,6 +29,15 @@ public class DashboardFragment extends Fragment {
 
         final TextView textView = binding.textDashboard;
         dashboardViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+
+        ProgressBar progressBar1 = requireActivity().findViewById(R.id.progress_bar_protein);
+        ProgressBar progressBar2 = requireActivity().findViewById(R.id.progress_bar_carbs);
+        ProgressBar progressBar3 = requireActivity().findViewById(R.id.progress_bar_fat);
+
+        progressBar1.setVisibility(View.GONE);
+        progressBar2.setVisibility(View.GONE);
+        progressBar3.setVisibility(View.GONE);
+
         return root;
     }
 
