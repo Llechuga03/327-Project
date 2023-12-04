@@ -159,25 +159,6 @@ public class HomeFragment extends Fragment {
         textProteinCount.setText(String.format("%.2f g of protein", totalConsumedProtein));
         textCarbCount.setText(String.format("%.2f g of carbs", totalConsumedCarbs));
         textFatsCount.setText(String.format("%.2f g of fats", totalConsumedFats));
-
-        // Update percentage TextViews if available in your XML
-        if (binding != null) {
-            textViewProgressProtein = binding.textViewProgressProtein;
-
-            if (textViewProgressProtein != null) {
-                textViewProgressProtein.setText(progressProtein + "%");
-            }
-
-            textViewProgressCarbs = binding.textViewProgressCarbs;
-            if (textViewProgressCarbs != null) {
-                textViewProgressCarbs.setText(progressCarbs + "%");
-            }
-
-            textViewProgressFats = binding.textViewProgressFat;
-            if (textViewProgressFats != null) {
-                textViewProgressFats.setText(progressFats + "%");
-            }
-        }
     }
 
     private void addFoodAndUpdateProgress(foodItem desiredFood) {
