@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import androidx.annotation.NonNull;
@@ -73,10 +74,14 @@ public class HomeFragment extends Fragment {
 
                         sharedViewModel.setBudgetCalVal(enteredValue);
                         editTextNumber.setText("");
+
+                        // Display the toast message
+                        Toast.makeText(getActivity(), "Calorie goal updated", Toast.LENGTH_SHORT).show();
                     }
 
                     return true;
                 }
+
                 return false;
             }
         });
