@@ -23,7 +23,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class Add_Meal extends AppCompatActivity {
-    String api_key = "fMoh8eI1l06bnM1emwJx5DWxDU9AwY3AMNHfXeSp";
+    String api_key = " * Enter API key here * ";
 
     //these two should increase the progress bar on the home page as the user
     //click on what food they're entering from the search bar
