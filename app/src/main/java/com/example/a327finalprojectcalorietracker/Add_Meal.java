@@ -76,7 +76,7 @@ public class Add_Meal extends AppCompatActivity {
                             List<foodItem> foodItems = response.body().getFoods();
                             if (foodItems != null && !foodItems.isEmpty()) {
                                 // Log the first food item's content
-                                Log.d("First Food Item", "First food item: " + foodItems.get(0).displayContent());
+//                                Log.d("First Food Item", "First food item: " + foodItems.get(0).displayContent());
 
                                 List<String> descriptions = new ArrayList<>();
                                 for (int i = 0; i < 10 && i < foodItems.size(); i++) {
@@ -141,6 +141,7 @@ public class Add_Meal extends AppCompatActivity {
                             // Add the selected item to UserFoods
                             foodItem desiredFood = selectedItem.get(0);
                             desiredFood.parseFoodNutrients();
+//                            desiredFood.calculateServingSize(desiredFood.getCarbs(), desiredFood.getProtein(), desiredFood.getFat(), desiredFood.getCalories());
 
                             // Log the value of desired food
                             Log.d("Desired Food", "Desired food item: " + desiredFood.getDescription());
