@@ -4,29 +4,77 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
+import com.example.a327finalprojectcalorietracker.R;
+import com.example.a327finalprojectcalorietracker.UserFoods;
 import com.example.a327finalprojectcalorietracker.databinding.FragmentHomeBinding;
+import com.example.a327finalprojectcalorietracker.foodItem;
 
 public class HomeFragment extends Fragment {
 
+    private ProgressBar progressBarProtein;
+    private ProgressBar progressBarCarbs;
+    private ProgressBar progressBarFats;
     private FragmentHomeBinding binding;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        HomeViewModel homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
-
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textHome;
-        homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        progressBarCarbs = binding.progressBarCarbs;
+        progressBarFats = binding.progressBarFat;
+        progressBarProtein = binding.progressBarProtein;
+
+        final TextView textHome = binding.textHome;
+        // Set date text here (if applicable)
+
+        // Initialize and update progress bars
+        updateProgressBars();
+
         return root;
+    }
+
+    private void updateProgressBars() {
+        // Get total consumed nutrients
+        float totalConsumedCarbs = UserFoods.getInstance().sumTotalCarbs();
+        float totalConsumedProtein = UserFoods.getInstance().sumTotalProtein();
+        float totalConsumedFats = UserFoods.getInstance().sumTotalFats();
+
+        // Calculate percentages
+        float maxCarbs = 300;
+        float maxProtein = 100;
+        float maxFats = 70;
+
+        int progressCarbs = (int) ((totalConsumedCarbs / maxCarbs) * 100);
+        int progressProtein = (int) ((totalConsumedProtein / maxProtein) * 100);
+        int progressFats = (int) ((totalConsumedFats / maxFats) * 100);
+
+        // Update progress bars
+        progressBarCarbs.setProgress(progressCarbs);
+        progressBarProtein.setProgress(progressProtein);
+        progressBarFats.setProgress(progressFats);
+
+        // Update percentage TextViews if available in your XML
+        TextView textViewProgressProtein = binding.textViewProgressProtein;
+        textViewProgressProtein.setText(progressProtein + "%");
+
+        TextView textViewProgressCarbs = binding.textViewProgressCarbs;
+        textViewProgressCarbs.setText(progressCarbs + "%");
+
+        TextView textViewProgressFats = binding.textViewProgressFat;
+        textViewProgressFats.setText(progressFats + "%");
+    }
+
+    private void addFoodAndUpdateProgress(foodItem desiredFood) {
+        UserFoods userFoods = UserFoods.getInstance();
+        userFoods.addFood(desiredFood);
+        updateProgressBars();
     }
 
     @Override
