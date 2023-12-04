@@ -58,16 +58,6 @@ public class DashboardFragment extends Fragment {
         dashboardViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
 
 
-        ProgressBar progressBar1 = requireActivity().findViewById(R.id.progress_bar_protein);
-        ProgressBar progressBar2 = requireActivity().findViewById(R.id.progress_bar_carbs);
-        ProgressBar progressBar3 = requireActivity().findViewById(R.id.progress_bar_fat);
-
-
-        progressBar1.setVisibility(View.GONE);
-        progressBar2.setVisibility(View.GONE);
-        progressBar3.setVisibility(View.GONE);
-
-
         handler = new Handler(Looper.getMainLooper());
         progressBar = root.findViewById(R.id.progressBar);
         int initialProgress = 0;
