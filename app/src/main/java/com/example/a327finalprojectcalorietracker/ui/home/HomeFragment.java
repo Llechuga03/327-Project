@@ -147,6 +147,14 @@ public class HomeFragment extends Fragment {
         progressBarProtein.setProgress(progressProtein);
         progressBarFats.setProgress(progressFats);
 
+        TextView textProteinCount = binding.textProteinCount;
+        TextView textCarbCount = binding.textCarbCount;
+        TextView textFatsCount = binding.textFatsCount;
+
+        textProteinCount.setText(String.format("%.2f g of protein", totalConsumedProtein));
+        textCarbCount.setText(String.format("%.2f g of carbs", totalConsumedCarbs));
+        textFatsCount.setText(String.format("%.2f g of fats", totalConsumedFats));
+
         // Update percentage TextViews if available in your XML
         if (binding != null) {
             textViewProgressProtein = binding.textViewProgressProtein;
