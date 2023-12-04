@@ -45,4 +45,122 @@
         app:layout_constraintVertical_bias="1.0"
         app:navGraph="@navigation/mobile_navigation" />
 
+    <ProgressBar
+        android:id="@+id/progress_bar_protein"
+        android:layout_width="119dp"
+        android:layout_height="135dp"
+        android:indeterminateOnly="false"
+        android:progress="60"
+        android:progressDrawable="@drawable/progressbar"
+        app:layout_constraintBottom_toBottomOf="@+id/nav_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.054"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.189" />
+
+    <TextView
+        android:id="@+id/text_view_progress_protein"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintBottom_toBottomOf="@id/progress_bar_protein"
+        app:layout_constraintEnd_toEndOf="@+id/progress_bar_protein"
+        app:layout_constraintStart_toStartOf="@+id/progress_bar_protein"
+        app:layout_constraintTop_toTopOf="@+id/progress_bar_protein"
+        tools:text="60%"/>
+
+    <ProgressBar
+        android:id="@+id/progress_bar_carbs"
+        android:layout_width="119dp"
+        android:layout_height="135dp"
+        android:indeterminateOnly="false"
+        android:progress="60"
+        android:progressDrawable="@drawable/progressbar"
+        app:layout_constraintBottom_toBottomOf="@id/nav_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.189"/>
+
+    <TextView
+        android:id="@+id/text_view_progress_carbs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintBottom_toBottomOf="@id/progress_bar_carbs"
+        app:layout_constraintEnd_toEndOf="@id/progress_bar_carbs"
+        app:layout_constraintStart_toStartOf="@id/progress_bar_carbs"
+        app:layout_constraintTop_toTopOf="@id/progress_bar_carbs"
+        tools:text="40%"/>
+
+    <ProgressBar
+        android:id="@+id/progress_bar_fat"
+        android:layout_width="119dp"
+        android:layout_height="135dp"
+        android:indeterminateOnly="false"
+        android:progress="60"
+        android:progressDrawable="@drawable/progressbar"
+        app:layout_constraintBottom_toBottomOf="@id/nav_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.945"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.189" />
+
+    <TextView
+        android:id="@+id/text_view_progress_fat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintBottom_toBottomOf="@id/progress_bar_fat"
+        app:layout_constraintEnd_toEndOf="@id/progress_bar_fat"
+        app:layout_constraintStart_toStartOf="@id/progress_bar_fat"
+        app:layout_constraintTop_toTopOf="@id/progress_bar_fat"
+        tools:text="80%"/>
+
+    <TextView
+        android:id="@+id/textView_desc_protein"
+        android:layout_width="64dp"
+        android:layout_height="28dp"
+        android:text="Protein"
+        android:textAllCaps="false"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/add_meal_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.109"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.115" />
+
+    <TextView
+        android:id="@+id/textView_desc_carbs"
+        android:layout_width="64dp"
+        android:layout_height="28dp"
+        android:text="Carbs"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/add_meal_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.112" />
+
+    <TextView
+        android:id="@+id/textView_desc_fat"
+        android:layout_width="52dp"
+        android:layout_height="25dp"
+        android:text="Fats"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/add_meal_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.873"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.108" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

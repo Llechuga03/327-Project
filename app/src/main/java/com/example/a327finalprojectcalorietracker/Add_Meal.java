@@ -28,7 +28,6 @@ public class Add_Meal extends AppCompatActivity {
     //these two should increase the progress bar on the home page as the user
     //click on what food they're entering from the search bar
 
-
     private void updateProgressBar(double consumedCalories) {
         double maxCalories = 2000;
 
@@ -76,7 +75,7 @@ public class Add_Meal extends AppCompatActivity {
                             List<foodItem> foodItems = response.body().getFoods();
                             if (foodItems != null && !foodItems.isEmpty()) {
                                 // Log the first food item's content
-                                Log.d("First Food Item", "First food item: " + foodItems.get(0).displayContent());
+//                                Log.d("First Food Item", "First food item: " + foodItems.get(0).displayContent());
 
                                 List<String> descriptions = new ArrayList<>();
                                 for (int i = 0; i < 10 && i < foodItems.size(); i++) {

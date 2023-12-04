@@ -7,6 +7,22 @@ import java.util.stream.Collectors;
 
 public class foodItem {
 
+    public float getCalories() {
+        return calories;
+    }
+
+    public float getCarbs() {
+        return carbs;
+    }
+
+    public float getProtein() {
+        return protein;
+    }
+
+    public float getFat() {
+        return fat;
+    }
+
     private float calories;
     private float carbs;
     private float protein;
@@ -179,7 +195,8 @@ public class foodItem {
     }
 
     public String displayContentSimple() {
-        return "Calories: " + this.calories + "\n" +
+        return "Serving Size: " + this.servingSize + this.servingSizeUnit + "\n" +
+                "Calories: " + this.calories + "\n" +
                 "Protein: " + this.protein + "\n" +
                 "Carbs: " + this.carbs + "\n" +
                 "Fat: " + this.fat;

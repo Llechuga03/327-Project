@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -18,6 +19,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class MainActivity extends AppCompatActivity {
     Button add_meal;
     private ActivityMainBinding binding;
+
+    private static final int ADD_MEAL_REQUEST_CODE = 1; //Define a request code
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +38,51 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
+
+        add_meal = findViewById(R.id.add_meal_button);
+        add_meal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Add_Meal.class);
+                startActivityForResult(intent, ADD_MEAL_REQUEST_CODE);
+            }
+        });
     }
+
+
+    //This is meant to trigger the updateProgressbarForCalories when theres an action
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == ADD_MEAL_REQUEST_CODE && resultCode == RESULT_OK){
+            if(data != null && data.hasExtra("consumedCalories")){
+                double consumedCalories = data.getDoubleExtra("consumedCalories",0.0);
+
+                //Update progress bars based on the recieved consumedCalories
+                //For example:
+                updateProgressBarForCalories(consumedCalories);
+            }
+        }
+    }
+
+    //this is the code to update each progress bar
+    private void updateProgressBarForCalories(double consumedCalories) {
+        double maxCalories = 2000;
+        //Calculate progress based on consumedCalories and update the progress bars accordingly
+        int progress = (int) ((consumedCalories/maxCalories)*100);
+
+        //update the progress bars for protein, carbs, and fat accordingly
+        ProgressBar progressBarProtein = findViewById(R.id.progress_bar_protein);
+        ProgressBar progressBarCarbs = findViewById(R.id.progress_bar_carbs);
+        ProgressBar progressBarFat = findViewById(R.id.progress_bar_fat);
+
+        progressBarProtein.setProgress(progress);
+        progressBarCarbs.setProgress(progress);
+        progressBarFat.setProgress(progress);
+    }
+    //we might need to update this based on how we want to increase each progress bar
+
+
     public void goToSecondActivity(View view) {
         Intent intent = new Intent(this, Add_Meal.class);
         startActivity(intent);
