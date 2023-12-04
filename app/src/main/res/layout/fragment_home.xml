@@ -168,4 +168,45 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
     
+     <TextView
+        android:id="@+id/text_protein_count"
+        android:layout_width="123dp"
+        android:layout_height="22dp"
+        android:text="%g of Protein"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progress_bar_protein"
+        app:layout_constraintVertical_bias="0.043" />
+
+    <TextView
+        android:id="@+id/text_carb_count"
+        android:layout_width="123dp"
+        android:layout_height="23dp"
+        android:text="%g of Carbs"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progress_bar_carbs"
+        app:layout_constraintVertical_bias="0.042" />
+
+    <TextView
+        android:id="@+id/text_fats_count"
+        android:layout_width="110dp"
+        android:layout_height="22dp"
+        android:text="%g of Fats"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.947"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progress_bar_fat"
+        app:layout_constraintVertical_bias="0.042" />
+    
 </androidx.constraintlayout.widget.ConstraintLayout>
