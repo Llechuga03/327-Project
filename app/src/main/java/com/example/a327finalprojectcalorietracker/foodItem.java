@@ -7,22 +7,6 @@ import java.util.stream.Collectors;
 
 public class foodItem {
 
-    public float getCalories() {
-        return calories;
-    }
-
-    public float getCarbs() {
-        return carbs;
-    }
-
-    public float getProtein() {
-        return protein;
-    }
-
-    public float getFat() {
-        return fat;
-    }
-
     private float calories;
     private float carbs;
     private float protein;
@@ -59,6 +43,9 @@ public class foodItem {
 
     @SerializedName("foodNutrients")
     private List<FoodNutrient> foodNutrients;
+
+    @SerializedName("foodMeasures")
+    private List<FoodMeasure> foodMeasures;
 
     // getters and setters for each field
 
@@ -104,14 +91,14 @@ public class foodItem {
 
     public String getDescription() {
         return description;
-    }
+    } //GETS NAME
 
     public void setDescription(String description) {
         this.description = description;
     }
 
     public String getFoodClass() {
-        return foodClass;
+        return foodClass     ;
     }
 
     public void setFoodClass(String foodClass) {
@@ -202,5 +189,127 @@ public class foodItem {
                 "Fat: " + this.fat;
     }
 
+    // Getter method for calories
+    public float getCalories() {
+        return this.calories;
+    }
+
+    // Getter method for carbs
+    public float getCarbs() {
+        return this.carbs;
+    }
+
+    // Getter method for protein
+    public float getProtein() {
+        return this.protein;
+    }
+
+    // Getter method for fat
+    public float getFat() {
+        return this.fat;
+    }
+
+    public float getWeight(){return this.servingSize;}
+
+    public void populateServingSize() {
+        if (this.servingSize == 0 && this.foodMeasures != null && !this.foodMeasures.isEmpty()) {
+            // Example logic: use the first available measure
+            FoodMeasure measure = this.foodMeasures.get(0);
+            this.servingSize = measure.getGramWeight();
+            this.servingSizeUnit = "g"; // or any other logic to determine unit
+        }
+    }
+
+    // Nested class for FoodMeasure
+    public static class FoodMeasure {
+        @SerializedName("disseminationText")
+        private String disseminationText;
+
+        @SerializedName("gramWeight")
+        private float gramWeight;
+
+        @SerializedName("id")
+        private int id;
+
+        @SerializedName("modifier")
+        private String modifier;
+
+        @SerializedName("rank")
+        private int rank;
+
+        @SerializedName("measureUnitAbbreviation")
+        private String measureUnitAbbreviation;
+
+        @SerializedName("measureUnitName")
+        private String measureUnitName;
+
+        @SerializedName("measureUnitId")
+        private int measureUnitId;
+
+        // Getters and Setters
+        public String getDisseminationText() {
+            return disseminationText;
+        }
+
+        public void setDisseminationText(String disseminationText) {
+            this.disseminationText = disseminationText;
+        }
+
+        public float getGramWeight() {
+            return gramWeight;
+        }
+
+        public void setGramWeight(float gramWeight) {
+            this.gramWeight = gramWeight;
+        }
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public String getModifier() {
+            return modifier;
+        }
+
+        public void setModifier(String modifier) {
+            this.modifier = modifier;
+        }
+
+        public int getRank() {
+            return rank;
+        }
+
+        public void setRank(int rank) {
+            this.rank = rank;
+        }
+
+        public String getMeasureUnitAbbreviation() {
+            return measureUnitAbbreviation;
+        }
+
+        public void setMeasureUnitAbbreviation(String measureUnitAbbreviation) {
+            this.measureUnitAbbreviation = measureUnitAbbreviation;
+        }
+
+        public String getMeasureUnitName() {
+            return measureUnitName;
+        }
+
+        public void setMeasureUnitName(String measureUnitName) {
+            this.measureUnitName = measureUnitName;
+        }
+
+        public int getMeasureUnitId() {
+            return measureUnitId;
+        }
+
+        public void setMeasureUnitId(int measureUnitId) {
+            this.measureUnitId = measureUnitId;
+        }
+    }
 
 }
