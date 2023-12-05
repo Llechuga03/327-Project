@@ -11,4 +11,9 @@ menu will appear that contains items to choose from matching the description of 
 Once they add their desired entries, the progress bars will update depending on the category of food. If the user
 clicks on the home fragment, it will take them to a page that contains a list of the foods they have
 entered, a progress bar for the total amount of calories eaten, the amount of calories they are aiming to reach,
-and how many calories they have left to eat. 
+and how many calories they have left to eat.
+
+NOTE: The API key used for the call is the following: fMoh8eI1l06bnM1emwJx5DWxDU9AwY3AMNHfXeSp.
+When testing the code, please go to java/com/example/a327finalprojectcalorietracker/Add_Meal.java
+and assign the API key to the API_key variable. 
+
